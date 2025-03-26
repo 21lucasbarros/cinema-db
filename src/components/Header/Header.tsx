@@ -5,8 +5,19 @@ export default function Header() {
     <>
       <header className={style.cabecalho}>
         <div className={style.cabecalho__conteudo}>
-          <i className="ri-film-fill" />
-          <h1 className={style.cabecalho__conteudo__titulo}>Cinema Database</h1>
+          <div className={style.cabecalho__conteudo__brand}>
+            <div className={style.cabecalho__conteudo__brand__logo}>
+              <i className="ri-film-fill" />
+            </div>
+            <div className={style.cabecalho__conteudo__brand__titulo}>
+              <span className={style.cabecalho__conteudo__brand__titulo_main}>
+                CINEMA
+              </span>
+              <span className={style.cabecalho__conteudo__brand__titulo_sub}>
+                DATABASE
+              </span>
+            </div>
+          </div>
         </div>
       </header>
     </>

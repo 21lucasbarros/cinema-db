@@ -91,42 +91,86 @@ export default function Main() {
   return (
     <>
       <main className={style.principal}>
-        <div className={style.principal__inputs}>
-          <input
-            type="text"
-            placeholder="Digite o nome de um filme"
-            value={campoPesquisa}
-            onChange={(e) => setCampoPesquisa(e.target.value)}
-            className={style.principal__inputs__text}
-          />
-          <button
-            onClick={pesquisar}
-            className={style.principal__inputs__button}
-          >
-            Pesquisar
-          </button>
-        </div>
+        <div className={style.principal__conteudo}>
+          <h1 className={style.principal__conteudo__titulo}>
+            <span>"CINEMA"</span>
+            <span>DATABASE™</span>
+          </h1>
+          <div className={style.principal__conteudo__inputs}>
+            <input
+              type="text"
+              placeholder="Digite o nome de um filme"
+              value={campoPesquisa}
+              onChange={(e) => setCampoPesquisa(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  pesquisar();
+                }
+              }}
+              className={style.principal__conteudo__inputs__text}
+            />
+            <button
+              onClick={pesquisar}
+              className={style.principal__conteudo__inputs__button}
+            >
+              Pesquisar
+            </button>
+          </div>
 
-        <div className={style.resultados__pesquisa}>
-          {erro && <p className={style.resultados__pesquisa__erro}>{erro}</p>}
-          {resultados.map((filme) => (
-            <div key={filme.id} className={style.resultados__pesquisa__item}>
-              <h2>{filme.title}</h2>
-              <p className="descricao-meta">{filme.overview}</p>
-              <p>Data de lançamento: {filme.release_date}</p>
-              <p>
-                <strong>Gênero:</strong> {filme.genres?.join(", ")}
+          <div className={style.resultados__conteudo__pesquisa}>
+            {erro && (
+              <p className={style.resultados__conteudo__pesquisa__erro}>
+                {erro}
               </p>
-              <p>
-                <strong>Diretor:</strong> {filme.director}
-              </p>
-              <img
-                src={`https://image.tmdb.org/t/p/w500${filme.poster_path}`}
-                alt={filme.title}
-                style={{ width: "200px" }}
-              />
-            </div>
-          ))}
+            )}
+            {resultados.map((filme) => (
+              <div
+                key={filme.id}
+                className={style.resultados__conteudo__pesquisa__item}
+              >
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${filme.poster_path}`}
+                  alt={filme.title}
+                  className={style.resultados__conteudo__pesquisa__item__img}
+                />
+                <div>
+                  <h2
+                    className={
+                      style.resultados__conteudo__pesquisa__item__titulo
+                    }
+                  >
+                    {filme.title}
+                  </h2>
+                  <p
+                    className={
+                      style.resultados__conteudo__pesquisa__item__descricao
+                    }
+                  >
+                    {filme.overview}
+                  </p>
+                  <p
+                    className={style.resultados__conteudo__pesquisa__item__data}
+                  >
+                    <strong>Data de lançamento:</strong> {filme.release_date}
+                  </p>
+                  <p
+                    className={
+                      style.resultados__conteudo__pesquisa__item__genero
+                    }
+                  >
+                    <strong>Gênero:</strong> {filme.genres?.join(", ")}
+                  </p>
+                  <p
+                    className={
+                      style.resultados__conteudo__pesquisa__item__diretor
+                    }
+                  >
+                    <strong>Diretor:</strong> {filme.director}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </main>
     </>

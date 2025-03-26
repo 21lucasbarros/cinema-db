@@ -1,3 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&family=Inter:wght@200;300;400;500;600;700&display=swap");
+
+:root {
+  --font-primary: "Roboto Mono", monospace;
+  --font-secondary: "Inter", sans-serif;
+
+  --color-background: #ffffff;
+  --color-surface: #f7f7f7;
+  --color-text: #111111;
+  --color-text-muted: rgba(17, 17, 17, 0.6);
+  --color-accent: #111111;
+  --color-accent-muted: rgba(17, 17, 17, 0.1);
+  --color-error: #ff4444;
+  --color-border: rgba(17, 17, 17, 0.1);
+
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+  --spacing-xl: 8rem;
+
+  --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 * {
   margin: 0;
   padding: 0;

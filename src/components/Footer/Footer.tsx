@@ -1,34 +1,56 @@
 import style from "./Footer.module.scss";
 
 export default function Footer() {
-  const anoAtual = new Date().getFullYear();
+  const currentYear = new Date().getFullYear();
+
   return (
-    <>
-      <footer className={style.rodape}>
-        <div className={style.rodape__conteudo}>
-          <div className={style.rodape__conteudo__brand}>
-            <img
-              src="../../../../logo.svg"
-              alt="Logo do Cinema Database"
-              className={style.rodape__conteudo__brand__logo}
-            />
-            <span>Cinema Database</span>
+    <footer className={style.rodape}>
+      <div className={style.rodape__conteudo}>
+        <div className={style.rodape__conteudo__brand}>
+          <div className={style.rodape__conteudo__brand__logo}>
+            <span className={style.rodape__conteudo__brand__logo_icon}>
+              <i className="ri-film-fill" />
+            </span>
           </div>
-
-          <p className={style.rodape__conteudo__copyright}>
-            &copy; {anoAtual} Cinema Database. Todos os direitos reservados.
-          </p>
-
-          <div className={style.rodape__conteudo__social}>
-            <a href="#" aria-label="GitHub">
-              <i className="ri-github-fill" />
-            </a>
-            <a href="#" aria-label="LinkedIn">
-              <i className="ri-linkedin-box-fill" />
-            </a>
+          <div className={style.rodape__conteudo__brand__creditos}>
+            <p>FEITO</p>
+            <p>POR LUCAS BARROS SIMON</p>
           </div>
         </div>
-      </footer>
-    </>
+
+        <div className={style.rodape__conteudo__social}>
+          <a
+            href="#"
+            className={style.rodape__conteudo__social_link}
+            aria-label="GitHub"
+          >
+            <i className="ri-github-fill" />
+          </a>
+          <a
+            href="#"
+            className={style.rodape__conteudo__social_link}
+            aria-label="LinkedIn"
+          >
+            <i className="ri-linkedin-box-fill" />
+          </a>
+          <a
+            href="#"
+            className={style.rodape__conteudo__social_link}
+            aria-label="Instagram"
+          >
+            <i className="ri-instagram-fill" />
+          </a>
+        </div>
+
+        <div className={style.rodape__conteudo__info}>
+          <p className={style.rodape__conteudo__info__copyright}>
+            © {currentYear} <span>CINEMA DATABASE</span>
+          </p>
+          <p className={style.rodape__conteudo__info__copyright}>
+            SELECIONANDO A EXCELÊNCIA
+          </p>
+        </div>
+      </div>
+    </footer>
   );
 }

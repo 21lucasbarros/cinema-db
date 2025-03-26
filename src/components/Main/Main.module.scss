@@ -1,88 +1,158 @@
-// Definição das variáveis de cores e estilos
-$input-background: #f1f1f1;
-$input-border: #333;
-$input-color: #333;
-$input-focus-background: #fff;
-$input-focus-border: #007aff;
-$input-placeholder-color: #888;
-$input-padding: 14px;
-$input-font-size: 1rem;
-$input-border-radius: 25px;
-
-$button-background: #f1f1f1;
-$button-border: #333;
-$button-color: #333;
-$button-hover-background: #333;
-$button-hover-color: #f1f1f1;
-$button-active-background: #222;
-$focus-shadow: rgba(51, 51, 51, 0.3);
-
 .principal {
-  min-height: 650px;
+  flex: 1;
+  padding: 2% 2%;
+
+  &__conteudo {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+    width: 100%;
+    text-align: center;
+
+    &__titulo {
+      margin-bottom: var(--spacing-xl);
+
+      span {
+        display: block;
+        font-family: var(--font-primary);
+        text-transform: uppercase;
+
+        &:first-child {
+          font-size: clamp(2rem, 8vw, 4rem);
+          font-weight: 700;
+          letter-spacing: -0.02em;
+          color: var(--color-text);
+        }
+
+        &:last-child {
+          font-size: clamp(0.875rem, 2vw, 1rem);
+          color: var(--color-text-muted);
+          letter-spacing: 0.2em;
+          margin-top: var(--spacing-xs);
+        }
+      }
+    }
+
+    &__inputs {
+      max-width: 600px;
+      margin: 0 auto var(--spacing-xl);
+      display: flex;
+      gap: var(--spacing-sm);
+
+      &__text,
+      &__button {
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: 0.875rem;
+        letter-spacing: 0.1em;
+        transition: var(--transition);
+      }
+
+      &__text {
+        flex: 1;
+        background: var(--color-background);
+        border: 1px solid var(--color-border);
+        color: var(--color-text);
+
+        &::placeholder {
+          color: var(--color-text-muted);
+        }
+
+        &:focus {
+          outline: none;
+          border-color: var(--color-accent);
+        }
+      }
+
+      &__button {
+        background: var(--color-background);
+        border: 1px solid var(--color-accent);
+        color: var(--color-accent);
+        cursor: pointer;
+
+        &:hover {
+          background: var(--color-accent);
+          color: var(--color-background);
+        }
+      }
+    }
+  }
 }
 
-.principal__inputs {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-}
+.resultados {
+  &__conteudo {
+    &__pesquisa {
+      display: grid;
+      gap: var(--spacing-md);
 
-.principal__inputs__text {
-  background-color: $input-background;
-  border: 1px solid $input-border;
-  color: $input-color;
-  font-size: $input-font-size;
-  padding: $input-padding;
-  border-radius: $input-border-radius;
-  width: 25%;
-  transition: all 0.3s ease-in-out;
-  letter-spacing: 1px;
+      &__erro {
+        text-align: center;
+        color: var(--color-error);
+        font-family: var(--font-primary);
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+      }
 
-  &::placeholder {
-    color: $input-placeholder-color;
-    font-style: italic;
-  }
+      &__item {
+        display: grid;
+        grid-template-columns: 150px 1fr;
+        gap: var(--spacing-md);
+        background: var(--color-surface);
+        position: relative;
+        padding: var(--spacing-sm);
+        text-align: left;
+        align-items: center;
+        border-radius: var(--border-radius);
+        overflow: hidden;
 
-  &:focus {
-    outline: none;
-    background-color: $input-focus-background;
-    border-color: $input-focus-border;
-  }
+        &::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          border: 1px solid var(--color-accent);
+          opacity: 0;
+          transition: var(--transition);
+        }
 
-  &:hover {
-    border-color: $input-focus-border;
-  }
-}
+        &:hover::before {
+          opacity: 1;
+        }
 
-.principal__inputs__button {
-  background-color: $button-background;
-  border: 1px solid $button-border;
-  color: $button-color;
-  font-size: 1rem;
-  font-weight: 500;
-  font-family: "Arial", sans-serif;
-  text-transform: uppercase;
-  padding: 14px 30px;
-  border-radius: 25px;
-  cursor: pointer;
-  letter-spacing: 1px;
-  transition: all 0.3s ease-in-out;
-  position: relative;
+        &__img {
+          width: 100%;
+          height: auto;
+          max-height: 800px;
+          object-fit: cover;
+          border-radius: var(--border-radius);
+          box-shadow: var(--shadow-md);
+        }
 
-  &:hover {
-    background-color: $button-hover-background;
-    color: $button-hover-color;
-    border-color: $button-hover-background;
-  }
+        & > div {
+          display: flex;
+          flex-direction: column;
+          gap: var(--spacing-xs);
+        }
 
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 10px $focus-shadow;
-  }
+        &__titulo {
+          font-family: var(--font-primary);
+          font-size: 1.25rem;
+          font-weight: 700;
+          color: var(--color-text);
+        }
 
-  &:active {
-    transform: scale(0.98);
-    background-color: $button-active-background;
-    color: $button-hover-color;
+        &__descricao,
+        &__data,
+        &__genero,
+        &__diretor {
+          color: var(--color-text-muted);
+          font-size: 0.875rem;
+          line-height: 1.6;
+        }
+
+        strong {
+          color: var(--color-text);
+          font-weight: 600;
+        }
+      }
+    }
   }
 }
