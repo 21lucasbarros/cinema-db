@@ -1,0 +1,60 @@
+// Variáveis de cor
+$footer-bg: #111;
+$footer-text: #eee;
+$footer-border: #333;
+$social-icon: #eee;
+$social-icon-hover: 0.8;
+
+.rodape {
+  background-color: $footer-bg;
+  color: $footer-text;
+  padding: 2rem 0;
+  border-top: 1px solid $footer-border;
+  width: 100%;
+
+  &__conteudo {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    text-align: center;
+
+    &__brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      font-size: 1.2rem;
+      font-weight: 500;
+
+      &__logo {
+        width: 3%;
+        height: auto;
+      }
+    }
+
+    &__copyright {
+      font-size: 0.9rem;
+      margin: 0;
+    }
+
+    &__social {
+      display: flex;
+      gap: 1.5rem;
+
+      a {
+        color: $social-icon;
+        transition: color 0.3s ease;
+        font-size: 1.5rem;
+        text-decoration: none;
+
+        &:hover {
+          opacity: $social-icon-hover;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,117 @@
+// Definição das variáveis de cores e estilos
+$input-background: #f1f1f1;
+$input-border: #333;
+$input-color: #333;
+$input-focus-background: #fff;
+$input-focus-border: #007aff;
+$input-placeholder-color: #888;
+$input-padding: 14px;
+$input-font-size: 1rem;
+$input-border-radius: 25px;
+
+$button-background: #f1f1f1;
+$button-border: #333;
+$button-color: #333;
+$button-hover-background: #333;
+$button-hover-color: #f1f1f1;
+$button-active-background: #222;
+$focus-shadow: rgba(51, 51, 51, 0.3);
+
+$footer-background: #333;
+$footer-text-color: #fff;
+$footer-padding: 20px;
+$footer-font-size: 0.9rem;
+$footer-font-family: "Arial", sans-serif;
+
+$footer__conteudo-max-width: 1200px;
+$footer__conteudo-padding: 0 20px;
+
+.principal__inputs {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.principal__inputs__text {
+  background-color: $input-background;
+  border: 1px solid $input-border;
+  color: $input-color;
+  font-size: $input-font-size;
+  padding: $input-padding;
+  border-radius: $input-border-radius;
+  width: 25%;
+  transition: all 0.3s ease-in-out;
+  letter-spacing: 1px;
+
+  &::placeholder {
+    color: $input-placeholder-color;
+    font-style: italic;
+  }
+
+  &:focus {
+    outline: none;
+    background-color: $input-focus-background;
+    border-color: $input-focus-border;
+  }
+
+  &:hover {
+    border-color: $input-focus-border;
+  }
+}
+
+.principal__inputs__button {
+  background-color: $button-background;
+  border: 1px solid $button-border;
+  color: $button-color;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: "Arial", sans-serif;
+  text-transform: uppercase;
+  padding: 14px 30px;
+  border-radius: 25px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+
+  &:hover {
+    background-color: $button-hover-background;
+    color: $button-hover-color;
+    border-color: $button-hover-background;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 10px $focus-shadow;
+  }
+
+  &:active {
+    transform: scale(0.98);
+    background-color: $button-active-background;
+    color: $button-hover-color;
+  }
+}
+
+.rodape {
+  background-color: $footer-background;
+  color: $footer-text-color;
+  font-family: $footer-font-family;
+  font-size: $footer-font-size;
+  text-align: center;
+  width: 100%;
+  padding: $footer-padding;
+  position: relative;
+  bottom: 0;
+  margin-top: auto;
+
+  .rodape__conteudo {
+    max-width: $footer__conteudo-max-width;
+    margin: 0 auto;
+    padding: $footer__conteudo-padding;
+
+    .rodape__conteudo__paragrafo {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
