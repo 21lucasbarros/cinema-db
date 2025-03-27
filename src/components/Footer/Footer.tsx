@@ -20,21 +20,27 @@ export default function Footer() {
 
         <div className={style.rodape__conteudo__social}>
           <a
-            href="#"
+            href="https://www.github.com/21lucasbarros/"
+            target="_blank"
+            rel="noopener noreferrer"
             className={style.rodape__conteudo__social_link}
             aria-label="GitHub"
           >
             <i className="ri-github-fill" />
           </a>
           <a
-            href="#"
+            href="https://www.linkedin.com/in/lucasbarrossimon/"
+            target="_blank"
+            rel="noopener noreferrer"
             className={style.rodape__conteudo__social_link}
             aria-label="LinkedIn"
           >
             <i className="ri-linkedin-box-fill" />
           </a>
           <a
-            href="#"
+            href="https://www.instagram.com/21lucasbarros/"
+            target="_blank"
+            rel="noopener noreferrer"
             className={style.rodape__conteudo__social_link}
             aria-label="Instagram"
           >

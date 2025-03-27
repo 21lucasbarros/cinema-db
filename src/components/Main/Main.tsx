@@ -66,7 +66,6 @@ export default function Main() {
 
       const filmeMaisPopular = filmes[0];
 
-      // Busca os detalhes do filme (incluindo equipe técnica)
       const detalhesResponse = await axios.get(
         `${movieDetailsUrl}/${filmeMaisPopular.id}`,
         {
@@ -78,7 +77,6 @@ export default function Main() {
         }
       );
 
-      // Busca informações de onde assistir
       const providersResponse = await axios.get(
         `${movieDetailsUrl}/${filmeMaisPopular.id}/watch/providers`,
         {
@@ -93,14 +91,12 @@ export default function Main() {
         detalhes.credits.crew.find((pessoa: any) => pessoa.job === "Director")
           ?.name || "Desconhecido";
 
-      // Processa os provedores de streaming no Brasil
       const providersBR = providersResponse.data.results?.BR?.flatrate || [];
       const providers = providersBR.map((provider: any) => ({
         provider_name: provider.provider_name,
         logo_path: provider.logo_path,
       }));
 
-      // Cria o objeto final do filme com todas as informações
       const filmeFinal = {
         ...filmeMaisPopular,
         genres: detalhes.genres.map((g: any) => g.name),
@@ -113,7 +109,6 @@ export default function Main() {
       setErro("Ocorreu um erro na busca.");
       console.error(error);
 
-      // Caso queira mostrar o erro específico para o usuário (opcional)
       if (axios.isAxiosError(error)) {
         console.error("Detalhes do erro:", error.response?.data);
       }
