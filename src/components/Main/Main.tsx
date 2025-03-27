@@ -27,6 +27,10 @@ export default function Main() {
   const apiUrl = "https://api.themoviedb.org/3/search/movie";
   const movieDetailsUrl = "https://api.themoviedb.org/3/movie";
 
+  const removerAcentos = (str: string): string => {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  };
+
   const pesquisar = async () => {
     if (!campoPesquisa) {
       setErro("Você precisa digitar o nome do filme.");
@@ -52,10 +56,12 @@ export default function Main() {
         return;
       }
 
-      filmes = filmes.filter(
-        (filme: any) =>
-          filme.title.toLowerCase() === campoPesquisa.toLowerCase()
-      );
+      const pesquisaNormalizada = removerAcentos(campoPesquisa.toLowerCase());
+
+      filmes = filmes.filter((filme: any) => {
+        const tituloNormalizado = removerAcentos(filme.title.toLowerCase());
+        return tituloNormalizado === pesquisaNormalizada;
+      });
 
       if (filmes.length === 0) {
         setErro("Nenhum filme encontrado com esse título exato.");
