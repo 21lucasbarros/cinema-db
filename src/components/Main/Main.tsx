@@ -2,6 +2,11 @@ import { useState } from "react";
 import style from "./Main.module.scss";
 import axios from "axios";
 
+interface Provider {
+  provider_name: string;
+  logo_path: string;
+}
+
 interface Movie {
   title: string;
   overview: string;
@@ -10,6 +15,7 @@ interface Movie {
   id: number;
   genres: string[];
   director: string;
+  providers?: Provider[];
 }
 
 export default function Main() {
@@ -60,6 +66,7 @@ export default function Main() {
 
       const filmeMaisPopular = filmes[0];
 
+      // Busca os detalhes do filme (incluindo equipe técnica)
       const detalhesResponse = await axios.get(
         `${movieDetailsUrl}/${filmeMaisPopular.id}`,
         {
@@ -71,21 +78,45 @@ export default function Main() {
         }
       );
 
+      // Busca informações de onde assistir
+      const providersResponse = await axios.get(
+        `${movieDetailsUrl}/${filmeMaisPopular.id}/watch/providers`,
+        {
+          params: {
+            api_key: apiKey,
+          },
+        }
+      );
+
       const detalhes = detalhesResponse.data;
       const diretor =
         detalhes.credits.crew.find((pessoa: any) => pessoa.job === "Director")
           ?.name || "Desconhecido";
 
+      // Processa os provedores de streaming no Brasil
+      const providersBR = providersResponse.data.results?.BR?.flatrate || [];
+      const providers = providersBR.map((provider: any) => ({
+        provider_name: provider.provider_name,
+        logo_path: provider.logo_path,
+      }));
+
+      // Cria o objeto final do filme com todas as informações
       const filmeFinal = {
         ...filmeMaisPopular,
         genres: detalhes.genres.map((g: any) => g.name),
         director: diretor,
+        providers: providers,
       };
 
       setResultados([filmeFinal]);
     } catch (error) {
       setErro("Ocorreu um erro na busca.");
       console.error(error);
+
+      // Caso queira mostrar o erro específico para o usuário (opcional)
+      if (axios.isAxiosError(error)) {
+        console.error("Detalhes do erro:", error.response?.data);
+      }
     }
   };
   return (
@@ -167,6 +198,37 @@ export default function Main() {
                   >
                     <strong>Diretor:</strong> {filme.director}
                   </p>
+
+                  {filme.providers && filme.providers.length > 0 ? (
+                    <div
+                      className={
+                        style.resultados__conteudo__pesquisa__item__providers
+                      }
+                    >
+                      <strong>Disponível em:</strong>
+                      <div className={style.providersList}>
+                        {filme.providers.map((provider, index) => (
+                          <div key={index} className={style.provider}>
+                            <img
+                              src={`https://image.tmdb.org/t/p/w45${provider.logo_path}`}
+                              alt={provider.provider_name}
+                              title={provider.provider_name}
+                            />
+                            <span>{provider.provider_name}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <p
+                      className={
+                        style.resultados__conteudo__pesquisa__item__noProviders
+                      }
+                    >
+                      Não encontramos informações sobre onde assistir este filme
+                      no Brasil.
+                    </p>
+                  )}
                 </div>
               </div>
             ))}

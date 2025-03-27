@@ -142,10 +142,65 @@
         &__descricao,
         &__data,
         &__genero,
-        &__diretor {
+        &__diretor,
+        &__providers {
           color: var(--color-text-muted);
+          font-family: var(--font-secondary);
           font-size: 0.875rem;
           line-height: 1.6;
+        }
+
+        &__providers {
+          display: flex;
+          justify-content: baseline;
+          align-items: center;
+          gap: var(--spacing-xs);
+
+          strong {
+            color: var(--color-text);
+            font-weight: 600;
+            font-size: 0.875rem;
+          }
+
+          .providersList {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            align-items: center;
+
+            .provider {
+              display: flex;
+              align-items: center;
+              gap: var(--spacing-xs);
+              background: rgba(var(--color-accent-rgb), 0.1);
+              padding: var(--spacing-xs) var(--spacing-sm);
+              border-radius: var(--border-radius-sm);
+              transition: var(--transition);
+
+              &:hover {
+                background: rgba(var(--color-accent-rgb), 0.2);
+              }
+
+              img {
+                width: 24px;
+                height: 24px;
+                object-fit: contain;
+                border-radius: 4px;
+              }
+
+              span {
+                font-family: var(--font-secondary);
+                font-size: 0.75rem;
+                color: var(--color-text);
+              }
+            }
+          }
+        }
+
+        &__noProviders {
+          font-family: var(--font-secondary);
+          font-size: 0.75rem;
+          color: var(--color-error);
         }
 
         strong {
